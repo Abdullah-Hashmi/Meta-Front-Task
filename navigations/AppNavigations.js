@@ -8,7 +8,8 @@ import {
   Calling,
   DetailedContact,
   FigmaToCode,
-  Contacts,
+  Home,
+  Settings,
 } from '../screens';
 import BottomTabNavigation from './BottomTabNavigation';
 
@@ -22,9 +23,10 @@ const AppNavigations = () => {
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="FigmaToCode" component={FigmaToCode} />
         <Stack.Screen name="Intro" component={Intro} />
-        <Stack.Screen name="Contacts" component={Contacts} />
+        <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Recents" component={Recents} />
         <Stack.Screen name="Calling" component={Calling} />
+        <Stack.Screen name="Settings" component={Settings} />
         <Stack.Screen name="DetailedContact" component={DetailedContact} />
         <Stack.Screen name="Main" component={BottomTabNavigation} />
       </Stack.Navigator>

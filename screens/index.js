@@ -4,7 +4,8 @@ import Recents from './Recents';
 import Calling from './Calling';
 import DetailedContact from './DetailedContact';
 
-import Contacts from './Contacts';
+import Home from './Home';
 import FigmaToCode from './FigmaToCode';
+import Settings from './Settings';
 
-export {Intro, Recents, Calling, DetailedContact, Contacts, FigmaToCode};
+export {Intro, Recents, Calling, DetailedContact, Home, FigmaToCode, Settings};

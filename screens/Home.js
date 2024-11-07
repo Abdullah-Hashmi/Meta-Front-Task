@@ -1,15 +1,15 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
-const DetailedContact = () => {
+const Home = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Recents</Text>
+      <Text style={styles.text}>Home</Text>
     </View>
   );
 };
 
-export default DetailedContact;
+export default Home;
 
 const styles = StyleSheet.create({
   container: {

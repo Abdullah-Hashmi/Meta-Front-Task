@@ -1,7 +1,7 @@
-import {View, Text, Image, Platform} from 'react-native';
+import {View, Image, Platform, Text} from 'react-native';
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Recents, Contacts} from '../screens';
+import {Calling, Home, Recents, Settings} from '../screens';
 import {COLORS, icons} from '../constants';
 
 const Tab = createBottomTabNavigator();
@@ -10,6 +10,7 @@ const BottomTabNavigation = () => {
   return (
     <Tab.Navigator
       screenOptions={{
+        tabBarShowLabel: true, // Enable tab labels
         headerShown: false,
         tabBarStyle: {
           position: 'absolute',
@@ -17,25 +18,27 @@ const BottomTabNavigation = () => {
           left: 0,
           right: 0,
           backgroundColor: COLORS.white,
-          height: Platform.OS === 'ios' ? 110 : 70,
+          height: Platform.OS === 'ios' ? 110 : 60,
           borderTopLeftRadius: 32,
           borderTopRightRadius: 32,
-          paddingBottom: Platform.OS === 'ios' ? 20 : 10,
+          elevation: 0,
+          shadowOpacity: 0,
+          shadowOffset: {
+            width: 0,
+            height: 0,
+          },
+          shadowRadius: 0,
+          shadowColor: COLORS.transparent,
+          elevation: 0,
         },
-        tabBarLabelStyle: {
-          fontSize: 12,
-          marginTop: 5,
-          color: COLORS.gray,
-        },
-        tabBarShowLabel: true, // Show labels
       }}>
       <Tab.Screen
-        name="Recents"
-        component={Recents}
+        name="Calling"
+        component={Calling}
         options={{
           tabBarIcon: ({focused}) => (
             <Image
-              source={focused ? icons.phoneCall : icons.phoneCallOutline}
+              source={focused ? icons.internet : icons.internetOutline}
               resizeMode="contain"
               style={{
                 width: 24,
@@ -44,16 +47,66 @@ const BottomTabNavigation = () => {
               }}
             />
           ),
-          tabBarLabel: 'Recents',
+          tabBarLabel: ({focused}) => (
+            <Text
+              style={{
+                color: focused ? COLORS.primary : COLORS.gray,
+                fontSize: 12,
+                fontWeight: '600',
+              }}>
+              Calling
+            </Text>
+          ),
         }}
       />
       <Tab.Screen
-        name="Contacts"
-        component={Contacts}
+        name="Home"
+        component={Home}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <View
+              style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: COLORS.primary,
+                height: Platform.OS === 'ios' ? 70 : 60,
+                width: Platform.OS === 'ios' ? 70 : 60,
+                top: Platform.OS === 'ios' ? -40 : -30,
+                borderRadius: Platform.OS === 'ios' ? 35 : 30,
+                borderWidth: 3,
+                borderColor: 'transparent',
+              }}>
+              <Image
+                source={icons.plus}
+                resizeMode="contain"
+                style={{
+                  width: 24,
+                  height: 24,
+                  tintColor: COLORS.white,
+                }}
+              />
+            </View>
+          ),
+          tabBarLabel: ({focused}) => (
+            <Text
+              style={{
+                color: focused ? COLORS.primary : COLORS.gray,
+                fontSize: 12,
+                fontWeight: '600',
+              }}>
+              Add Post
+            </Text>
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name="Settings"
+        component={Settings}
         options={{
           tabBarIcon: ({focused}) => (
             <Image
-              source={focused ? icons.user : icons.userOutline}
+              source={focused ? icons.settings : icons.settingsOutline}
               resizeMode="contain"
               style={{
                 width: 24,
@@ -62,7 +115,16 @@ const BottomTabNavigation = () => {
               }}
             />
           ),
-          tabBarLabel: 'Contacts', // Label below icon
+          tabBarLabel: ({focused}) => (
+            <Text
+              style={{
+                color: focused ? COLORS.primary : COLORS.gray,
+                fontSize: 12,
+                fontWeight: '600',
+              }}>
+              Settings
+            </Text>
+          ),
         }}
       />
     </Tab.Navigator>
