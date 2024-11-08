@@ -1,7 +1,7 @@
 import {View, Image, Platform, Text} from 'react-native';
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import LinearGradient from 'react-native-linear-gradient'; // Import LinearGradient
+import LinearGradient from 'react-native-linear-gradient';
 import {Notifications, Home, Profile} from '../screens';
 import {COLORS, icons} from '../constants';
 
@@ -10,6 +10,7 @@ const Tab = createBottomTabNavigator();
 const BottomTabNavigation = () => {
   return (
     <Tab.Navigator
+      initialRouteName="Home"
       screenOptions={{
         tabBarShowLabel: true,
         headerShown: false,

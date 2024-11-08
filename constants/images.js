@@ -4,6 +4,7 @@ const item3 = require('../assets/images/item3_image.png');
 const item4 = require('../assets/images/item4_image.png');
 const item5 = require('../assets/images/item5_image.png');
 const overlayimage = require('../assets/images/vector.png');
+const CTA = require('../assets/images/CTA_icon.png');
 
 export default {
   item1,
@@ -12,4 +13,5 @@ export default {
   item4,
   item5,
   overlayimage,
+  CTA,
 };

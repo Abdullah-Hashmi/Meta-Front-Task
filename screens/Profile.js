@@ -1,10 +1,11 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {COLORS} from '../constants';
 
 const Settings = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Profile</Text>
+      <Text style={styles.text}>Coming soon!</Text>
     </View>
   );
 };
@@ -20,6 +21,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: 'black',
+    color: COLORS.primary,
   },
 });

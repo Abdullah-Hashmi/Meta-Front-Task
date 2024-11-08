@@ -4,7 +4,7 @@ import {black} from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
 const {height, width} = Dimensions.get('window');
 
 export const COLORS = {
-  primary: '#743df9',
+  primary: '#52C2FE',
   // colors={['#00A4E4', '#1EB0E9']}
   secondary: '#00A4E4',
   tertiary: '#1EB0E9',

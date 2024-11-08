@@ -1,49 +1,86 @@
-import React from 'react';
-import {StyleSheet, Text, View, StatusBar, FlatList, Image} from 'react-native';
+import React, {useState} from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  StatusBar,
+  FlatList,
+  Image,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import * as Progress from 'react-native-progress';
-
 import {COLORS, FontFamily, FontSize} from '../constants/theme';
 import {itemsData} from '../data';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import {images} from '../constants';
 
 const Home = ({navigation}) => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredData, setFilteredData] = useState(itemsData);
+
+  const handleSearch = query => {
+    setSearchQuery(query);
+    if (query) {
+      const filteredItems = itemsData.filter(item =>
+        item.title.toLowerCase().includes(query.toLowerCase()),
+      );
+      setFilteredData(filteredItems);
+    } else {
+      setFilteredData(itemsData);
+    }
+  };
+
   const renderItem = ({item}) => {
     return (
-      <View
-        style={[
-          styles.itemContainer,
-          {backgroundColor: item.itembackground_color},
-        ]}>
-        <View style={styles.itemContent}>
-          {/* Title with dynamic color */}
-          <Text style={[styles.title, {color: item.color}]}>{item.title}</Text>
-
-          {/* Subtitle with dynamic color */}
-          <Text style={[styles.subTitle, {color: item.color}]}>
-            {item.subTitle}
-          </Text>
-
-          <Text style={styles.itemsText}>{item.items}</Text>
-
-          {/* Progress Bar with dynamic color */}
-          <Progress.Bar
-            progress={item.progress} // Dynamic progress value
-            unfilledColor="white" // White color for the unfilled part
-            width={150}
-            color={item.color} // Dynamic color for the filled part
-            borderWidth={0} // Remove the border around the progress bar
-            height={3.5}
-            useNativeDriver={true} // Improve performance on certain devices
-          />
-        </View>
-
-        {/* Image with overlay */}
-        <View style={styles.imageContainer}>
-          <Image source={item.image} style={styles.image} />
-          <Image source={item.overlay} style={styles.overlayImage} />
+      <View>
+        <View
+          style={[
+            styles.itemContainer,
+            {backgroundColor: item.itembackground_color},
+          ]}>
+          <View style={styles.itemContent}>
+            <Text style={[styles.title, {color: item.color}]}>
+              {item.title}
+            </Text>
+            <Text
+              style={[
+                styles.subTitle,
+                {color: item.color, fontSize: hp('1.5%')},
+              ]}>
+              {item.subTitle}
+            </Text>
+            <View style={[styles.itemsCount, {backgroundColor: item.color}]}>
+              <Text style={styles.itemsText}>{item.items}</Text>
+            </View>
+            <Text
+              style={[
+                styles.subTitle,
+                {
+                  color: item.color,
+                  fontSize: hp('1.1%'),
+                  marginBottom: hp('0.5%'),
+                },
+              ]}>
+              {item.progressbarText}
+            </Text>
+            <Progress.Bar
+              progress={item.progress}
+              unfilledColor="white"
+              width={wp('45%')}
+              color={item.color}
+              borderWidth={0}
+              height={hp('0.5%')}
+              useNativeDriver={true}
+            />
+          </View>
+          <View style={styles.imageContainer}>
+            <Image source={item.overlay} style={styles.overlayImage} />
+            <Image source={item.image} style={styles.image} />
+          </View>
         </View>
       </View>
     );
@@ -53,24 +90,41 @@ const Home = ({navigation}) => {
     <View style={styles.screenContainer}>
       <StatusBar
         backgroundColor="transparent"
-        barStyle="light-content"
+        barStyle="dark-content"
         translucent
       />
-      {/* Header section */}
+
       <View style={styles.headerContainer}>
         <Text style={styles.Subtitle}>Hello,</Text>
         <Text style={styles.headertitle}>MetaFront!</Text>
-        <Text style={styles.Subtitle}>
+        <Text
+          style={[
+            styles.Subtitle,
+            {fontSize: hp('1.8%'), marginEnd: wp('5%')},
+          ]}>
           Stay organized with quick access to all your essential lists!
         </Text>
+
+        <View style={styles.searchContainer}>
+          <TextInput
+            style={styles.searchBar}
+            placeholderTextColor={COLORS.gray}
+            placeholder="Search"
+            value={searchQuery}
+            onChangeText={handleSearch}
+          />
+          <TouchableOpacity style={styles.sliderIconContainer}>
+            <Image source={images.CTA} style={styles.sliderIcon} />
+          </TouchableOpacity>
+        </View>
       </View>
-      {/* FlatList section */}
+
       <FlatList
-        data={itemsData}
+        data={filteredData}
         renderItem={renderItem}
         keyExtractor={item => item.id}
         contentContainerStyle={styles.listContainer}
-        ListFooterComponent={<View style={styles.footer} />} // Adding space at the bottom
+        ListFooterComponent={<View style={styles.footer} />}
       />
     </View>
   );
@@ -84,38 +138,64 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.ScreenBackgroundColor,
   },
   headerContainer: {
-    height: hp('25%'),
+    height: hp('30%'),
     backgroundColor: COLORS.ScreenBackgroundColor,
     justifyContent: 'flex-end',
     paddingLeft: wp('7%'),
-    paddingBottom: hp('3%'),
+    paddingBottom: hp('1%'),
   },
   headertitle: {
     color: COLORS.black,
     fontSize: FontSize.title,
     fontFamily: FontFamily.heading,
+    marginBottom: hp('0.5%'),
+    lineHeight: hp('3%'),
   },
   Subtitle: {
     fontSize: FontSize.subtitle,
     fontFamily: FontFamily.subtitle,
     color: COLORS.thinText,
+    marginBottom: hp('0.5%'),
+    lineHeight: hp('3%'),
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: wp('90%'),
+    marginTop: hp('1%'),
+  },
+  searchBar: {
+    flex: 1,
+    height: hp('5%'),
+    backgroundColor: COLORS.white,
+    borderRadius: 10,
+    borderColor: COLORS.primary,
+    borderWidth: 1,
+    paddingVertical: hp('1%'),
+    paddingHorizontal: wp('2%'),
+    color: COLORS.black,
+  },
+  sliderIcon: {
+    width: wp('9%'),
+    height: wp('9%'),
+    marginLeft: wp('2%'),
+    alignSelf: 'center',
   },
   listContainer: {
-    flexGrow: 1, // Ensure the FlatList grows to fill available space
-    paddingBottom: hp('5%'), // Adjust bottom padding to give space
+    flexGrow: 1,
+    paddingBottom: hp('5%'),
   },
   itemContainer: {
     flexDirection: 'row',
-    borderRadius: 10,
-    padding: 15,
-    marginVertical: 10,
+    borderRadius: 15,
+    marginVertical: hp('1%'),
     marginHorizontal: wp('5%'),
     alignItems: 'center',
-    width: wp('90%'), // Adjusted item width (set to 90% of screen width)
-    paddingBottom: 10, // Added padding at the bottom of each item
+    width: wp('92%'),
   },
   itemContent: {
     flex: 1,
+    padding: wp('6%'),
   },
   title: {
     fontSize: FontSize.itemtitle,
@@ -126,43 +206,57 @@ const styles = StyleSheet.create({
     fontSize: FontSize.subtitle,
     fontFamily: FontFamily.S1_Regular,
     color: COLORS.gray,
-    marginVertical: 2,
+    marginVertical: hp('0.2%'),
+  },
+  itemsCount: {
+    paddingVertical: hp('0.5%'),
+    paddingHorizontal: wp('2.5%'),
+    borderRadius: 20,
+    alignSelf: 'flex-start',
+    marginVertical: hp('0.5%'),
   },
   itemsText: {
     fontSize: FontSize.subtitle,
-    fontFamily: FontFamily.P1_Regular,
-    color: COLORS.secondaryGray,
-    marginVertical: 2,
+    fontFamily: FontFamily.subtitle,
+    color: 'white',
   },
   imageContainer: {
-    // position: 'relative', // Parent container for image and overlay
     width: wp('30%'),
     height: wp('30%'),
-  },
-  image: {
-    width: wp('30%'), // Adjusted image size
-    height: wp('30%'),
-    resizeMode: 'cover',
-    backgroundColor: 'transparent',
-    alignSelf: 'flex-end', // Align image to the right
-    bottom: -9,
-    right: -14,
-    borderRadius: 10,
+    position: 'relative',
   },
   overlayImage: {
-    position: 'absolute', // Overlay positioned on top of the image
-    top: -25,
-    right: -100,
-
-    right: 0,
-    width: '100%',
-    height: '100%',
-    resizeMode: 'cover', // Adjust overlay size if necessary
+    ...StyleSheet.absoluteFillObject,
+    resizeMode: 'cover',
     backgroundColor: 'transparent',
-    borderRadius: 50,
+    borderRadius: 10,
     alignSelf: 'flex-end',
+    top: -hp('3%'),
+    overflow: 'hidden',
+    zIndex: -1,
+  },
+  image: {
+    width: wp('32%'),
+    height: wp('34%'),
+    resizeMode: 'cover',
+    backgroundColor: 'transparent',
+    position: 'relative',
+    borderRadius: 10,
+    alignSelf: 'flex-end',
+    bottom: -hp('-0.1%'),
+    right: 0,
   },
   footer: {
-    height: 50, // Add some height to the footer to provide spacing at the bottom
+    height: hp('7%'),
+  },
+  sliderIconContainer: {
+    width: wp('8%'),
+    height: wp('8%'),
+    marginLeft: wp('1%'),
+    alignSelf: 'center',
+    marginEnd: wp('2%'),
+    backgroundColor: 'transparent',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

@@ -2,15 +2,7 @@ import {View, Text} from 'react-native';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {
-  Intro,
-  Recents,
-  DetailedContact,
-  FigmaToCode,
-  Home,
-  Notifications,
-  Profile,
-} from '../screens';
+import {Intro, Home, Notifications, Profile} from '../screens';
 import BottomTabNavigation from './BottomTabNavigation';
 
 const Stack = createNativeStackNavigator();
@@ -21,13 +13,10 @@ const AppNavigations = () => {
       <Stack.Navigator
         initialRouteName="Intro"
         screenOptions={{headerShown: false}}>
-        <Stack.Screen name="FigmaToCode" component={FigmaToCode} />
         <Stack.Screen name="Intro" component={Intro} />
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Recents" component={Recents} />
         <Stack.Screen name="Notifications" component={Notifications} />
         <Stack.Screen name="Profile" component={Profile} />
-        <Stack.Screen name="DetailedContact" component={DetailedContact} />
         <Stack.Screen name="Main" component={BottomTabNavigation} />
       </Stack.Navigator>
     </NavigationContainer>

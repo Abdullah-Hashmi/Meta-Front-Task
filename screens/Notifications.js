@@ -1,25 +1,26 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {COLORS} from '../constants';
 
-const Calling = () => {
+const Notifications = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Notifications</Text>
+      <Text style={styles.text}>Coming soon!</Text>
     </View>
   );
 };
 
-export default Calling;
+export default Notifications;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, // This makes the container take up the full screen
-    justifyContent: 'center', // Centers the content vertically
-    alignItems: 'center', // Centers the content horizontally
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   text: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: 'black',
+    color: COLORS.primary,
   },
 });

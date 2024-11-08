@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import {COLORS, FONTS, images} from '../constants';
-import Button from '../conponents/Button'; // Ensure this is the correct import for your button
+import Button from '../conponents/Button';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -17,7 +17,9 @@ import {
 
 const Intro = ({navigation}) => {
   return (
-    <ImageBackground source={images.background} style={styles.backgroundImage}>
+    <ImageBackground
+      source={images.background || require('../assets/images/background.jpeg')}
+      style={styles.backgroundImage}>
       <StatusBar hidden />
 
       <View style={styles.container}>
@@ -29,7 +31,6 @@ const Intro = ({navigation}) => {
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
-            console.log('Button Pressed');
             navigation.replace('Main');
           }}>
           <Text style={styles.buttonText}>Get Started</Text>
@@ -47,60 +48,59 @@ const Intro = ({navigation}) => {
 const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
-    justifyContent: 'center', // Centers the content vertically
-    paddingHorizontal: wp('5%'), // Adjust padding based on screen width
+    justifyContent: 'center',
+    paddingHorizontal: wp('5%'),
   },
   container: {
     flex: 1,
-    justifyContent: 'center', // Centers content vertically
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Adds a slight dark overlay to improve text readability
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
     borderRadius: 20,
-    padding: wp('6%'), // Adjust padding based on screen width
+    padding: wp('6%'),
     marginHorizontal: wp('5%'),
     shadowColor: '#000',
     shadowOffset: {width: 0, height: 4},
     shadowOpacity: 0.2,
     shadowRadius: 6,
-    elevation: 5, // For Android
+    elevation: 5,
   },
   title: {
-    fontSize: wp('8%'), // Responsive font size based on screen width
-    color: COLORS.white,
+    fontSize: wp('8%'),
     textAlign: 'center',
     fontFamily: FONTS.bold,
-    marginBottom: hp('2%'), // Adjust margin based on screen height
+    marginBottom: hp('2%'),
   },
   subTitle: {
-    fontSize: wp('5%'), // Responsive font size based on screen width
+    fontSize: wp('5%'),
     color: COLORS.white,
     textAlign: 'center',
     fontFamily: FONTS.regular,
-    marginBottom: hp('5%'), // Adjust margin based on screen height
+    marginBottom: hp('5%'),
   },
   button: {
-    marginVertical: hp('3%'), // Adjust margin based on screen height
-    width: wp('80%'), // Responsive button width (80% of screen width)
-    paddingVertical: hp('2%'), // Responsive padding based on screen height
+    marginVertical: hp('3%'),
+    width: wp('80%'),
+    paddingVertical: hp('2%'),
     borderRadius: 8,
     backgroundColor: COLORS.primary,
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 5,
-    alignSelf: 'center', // Centers the button horizontally
+    alignSelf: 'center',
   },
   footer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: hp('3%'), // Adjust margin based on screen height
+    marginTop: hp('3%'),
   },
   footerText: {
-    fontSize: wp('4%'), // Responsive font size based on screen width
+    fontSize: wp('4%'),
     color: COLORS.white,
     fontFamily: 'medium',
   },
   footerName: {
-    fontSize: wp('5%'), // Responsive font size based on screen width
+    fontSize: wp('5%'),
     color: COLORS.white,
     fontFamily: FONTS.semiBold,
   },
