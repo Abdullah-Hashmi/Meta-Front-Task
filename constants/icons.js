@@ -23,7 +23,7 @@ const user = require('../assets/icons/user.png');
 const userOutline = require('../assets/icons/user-outline.png');
 const search = require('../assets/icons/search.png');
 const notification = require('../assets/icons/notification.png');
-
+const Home = require('../assets/icons/Home1.png');
 export default {
   appleLogo,
   back,
