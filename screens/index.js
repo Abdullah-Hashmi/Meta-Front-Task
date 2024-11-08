@@ -1,11 +1,19 @@
 import Intro from './Intro';
 
 import Recents from './Recents';
-import Calling from './Calling';
+import Notifications from './Notifications';
 import DetailedContact from './DetailedContact';
 
 import Home from './Home';
 import FigmaToCode from './FigmaToCode';
-import Settings from './Settings';
+import Profile from './Profile';
 
-export {Intro, Recents, Calling, DetailedContact, Home, FigmaToCode, Settings};
+export {
+  Intro,
+  Recents,
+  Notifications,
+  DetailedContact,
+  Home,
+  FigmaToCode,
+  Profile,
+};

@@ -1,17 +1,20 @@
-import { Dimensions } from "react-native";
+import {Dimensions} from 'react-native';
 
-const { height, width } = Dimensions.get("window");
+const {height, width} = Dimensions.get('window');
 
 export const COLORS = {
-  primary: "#743df9",
-  secondary: "#2c2651",
-  white: "#FFFFFF",
-  secondaryWhite: "#F9F9FF",
-  tertiaryWhite: "#fafafa",
-  black: "#000000",
-  gray: "#8a8994",
-  gray2: "#e4e5e6",
-  secondaryGray: "#808080",
+  primary: '#743df9',
+  // colors={['#00A4E4', '#1EB0E9']}
+  secondary: '#00A4E4',
+  tertiary: '#1EB0E9',
+  white: '#FFFFFF',
+  secondaryWhite: '#F9F9FF',
+  tertiaryWhite: '#fafafa',
+  black: '#000000',
+  gray: '#8a8994',
+  gray2: '#e4e5e6',
+  secondaryGray: '#808080',
+  ScreenBackgroundColor: '#EFF9FF',
 };
 
 export const SIZES = {
@@ -41,20 +44,20 @@ export const SIZES = {
 
 export const FONTS = {
   largeTitle: {
-    fontFamily: "black",
+    fontFamily: 'black',
     fontSize: SIZES.largeTitle,
     lineHeight: 55,
   },
-  h1: { fontFamily: "bold", fontSize: SIZES.h1, lineHeight: 36 },
-  h2: { fontFamily: "bold", fontSize: SIZES.h2, lineHeight: 30 },
-  h3: { fontFamily: "bold", fontSize: SIZES.h3, lineHeight: 22 },
-  h4: { fontFamily: "bold", fontSize: SIZES.h4, lineHeight: 20 },
-  body1: { fontFamily: "regular", fontSize: SIZES.body1, lineHeight: 36 },
-  body2: { fontFamily: "regular", fontSize: SIZES.body2, lineHeight: 30 },
-  body3: { fontFamily: "regular", fontSize: SIZES.body3, lineHeight: 22 },
-  body4: { fontFamily: "regular", fontSize: SIZES.body4, lineHeight: 20 },
+  h1: {fontFamily: 'bold', fontSize: SIZES.h1, lineHeight: 36},
+  h2: {fontFamily: 'bold', fontSize: SIZES.h2, lineHeight: 30},
+  h3: {fontFamily: 'bold', fontSize: SIZES.h3, lineHeight: 22},
+  h4: {fontFamily: 'bold', fontSize: SIZES.h4, lineHeight: 20},
+  body1: {fontFamily: 'regular', fontSize: SIZES.body1, lineHeight: 36},
+  body2: {fontFamily: 'regular', fontSize: SIZES.body2, lineHeight: 30},
+  body3: {fontFamily: 'regular', fontSize: SIZES.body3, lineHeight: 22},
+  body4: {fontFamily: 'regular', fontSize: SIZES.body4, lineHeight: 20},
 };
 
-const appTheme = { COLORS, SIZES, FONTS };
+const appTheme = {COLORS, SIZES, FONTS};
 
 export default appTheme;

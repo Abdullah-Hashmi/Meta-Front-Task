@@ -1,15 +1,15 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
-const Calling = () => {
+const Settings = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Recents</Text>
+      <Text style={styles.text}>Profile</Text>
     </View>
   );
 };
 
-export default Calling;
+export default Settings;
 
 const styles = StyleSheet.create({
   container: {

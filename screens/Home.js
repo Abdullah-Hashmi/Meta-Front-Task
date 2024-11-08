@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     flex: 1, // This makes the container take up the full screen
     justifyContent: 'center', // Centers the content vertically
     alignItems: 'center', // Centers the content horizontally
+    backgroundColor: 'white',
   },
   text: {
     fontSize: 24,

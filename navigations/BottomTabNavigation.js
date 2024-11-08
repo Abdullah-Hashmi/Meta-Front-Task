@@ -1,7 +1,8 @@
 import {View, Image, Platform, Text} from 'react-native';
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Calling, Home, Recents, Settings} from '../screens';
+import LinearGradient from 'react-native-linear-gradient'; // Import LinearGradient
+import {Notifications, Home, Profile} from '../screens';
 import {COLORS, icons} from '../constants';
 
 const Tab = createBottomTabNavigator();
@@ -10,7 +11,7 @@ const BottomTabNavigation = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarShowLabel: true, // Enable tab labels
+        tabBarShowLabel: true,
         headerShown: false,
         tabBarStyle: {
           position: 'absolute',
@@ -23,61 +24,66 @@ const BottomTabNavigation = () => {
           borderTopRightRadius: 32,
           elevation: 0,
           shadowOpacity: 0,
-          shadowOffset: {
-            width: 0,
-            height: 0,
-          },
+          shadowOffset: {width: 0, height: 0},
           shadowRadius: 0,
           shadowColor: COLORS.transparent,
-          elevation: 0,
         },
       }}>
       <Tab.Screen
-        name="Calling"
-        component={Calling}
+        name="Notifications"
+        component={Notifications}
         options={{
           tabBarIcon: ({focused}) => (
             <Image
-              source={focused ? icons.internet : icons.internetOutline}
+              source={icons.Notification1}
               resizeMode="contain"
               style={{
-                width: 24,
-                height: 24,
-                tintColor: focused ? COLORS.primary : COLORS.gray,
+                width: 34,
+                height: 34,
+                tintColor: focused ? COLORS.secondary : COLORS.gray,
               }}
             />
           ),
           tabBarLabel: ({focused}) => (
             <Text
               style={{
-                color: focused ? COLORS.primary : COLORS.gray,
+                color: focused ? COLORS.secondary : COLORS.gray,
                 fontSize: 12,
                 fontWeight: '600',
               }}>
-              Calling
+              Notifications
             </Text>
           ),
         }}
       />
+
       <Tab.Screen
         name="Home"
         component={Home}
         options={{
           tabBarIcon: ({focused}) => (
-            <View
+            <LinearGradient
+              colors={['#00A4E4', '#1EB0E9']} // Gradient colors
+              start={{x: 0.5, y: 0}}
+              end={{x: 0.5, y: 1}}
               style={{
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: COLORS.primary,
+                backgroundColor: 'transparent',
                 height: Platform.OS === 'ios' ? 70 : 60,
                 width: Platform.OS === 'ios' ? 70 : 60,
-                top: Platform.OS === 'ios' ? -40 : -30,
+                top: Platform.OS === 'ios' ? -10 : -10,
                 borderRadius: Platform.OS === 'ios' ? 35 : 30,
                 borderWidth: 3,
-                borderColor: 'transparent',
+                borderColor: 'white',
+                borderWidth: 4,
+                shadowOffset: {width: 0, height: 10},
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+                elevation: 0,
               }}>
               <Image
-                source={icons.plus}
+                source={icons.Home1}
                 resizeMode="contain"
                 style={{
                   width: 24,
@@ -85,7 +91,7 @@ const BottomTabNavigation = () => {
                   tintColor: COLORS.white,
                 }}
               />
-            </View>
+            </LinearGradient>
           ),
           tabBarLabel: ({focused}) => (
             <Text
@@ -93,36 +99,34 @@ const BottomTabNavigation = () => {
                 color: focused ? COLORS.primary : COLORS.gray,
                 fontSize: 12,
                 fontWeight: '600',
-              }}>
-              Add Post
-            </Text>
+              }}></Text>
           ),
         }}
       />
 
       <Tab.Screen
-        name="Settings"
-        component={Settings}
+        name="Profile"
+        component={Profile}
         options={{
           tabBarIcon: ({focused}) => (
             <Image
-              source={focused ? icons.settings : icons.settingsOutline}
+              source={icons.Profile1}
               resizeMode="contain"
               style={{
                 width: 24,
                 height: 24,
-                tintColor: focused ? COLORS.primary : COLORS.gray,
+                tintColor: focused ? COLORS.secondary : COLORS.gray,
               }}
             />
           ),
           tabBarLabel: ({focused}) => (
             <Text
               style={{
-                color: focused ? COLORS.primary : COLORS.gray,
+                color: focused ? COLORS.secondary : COLORS.gray,
                 fontSize: 12,
                 fontWeight: '600',
               }}>
-              Settings
+              Profile
             </Text>
           ),
         }}
