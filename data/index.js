@@ -1,3 +1,4 @@
+import {overlay} from 'react-native-paper';
 import images from '../constants/images'; // Correct the import
 
 export const itemsData = [
@@ -8,8 +9,10 @@ export const itemsData = [
     subTitle: 'Add needed items.',
     items: '200 Items',
     progressbarText: 'Bought 70% ',
+    progress: 0.7,
     color: '#008B94',
     image: require('../assets/images/item1_image.png'),
+    overlay: require('../assets/images/Vector.png'),
   },
   {
     id: '2',
@@ -18,8 +21,10 @@ export const itemsData = [
     subTitle: 'Add your spiritual goals.',
     items: '10 Goals',
     progressbarText: 'Achieved 30% ',
+    progress: 0.3,
     color: '#4AA688',
     image: require('../assets/images/item2_image.png'),
+    overlay: require('../assets/images/Vector.png'),
   },
   {
     id: '3',
@@ -28,8 +33,10 @@ export const itemsData = [
     subTitle: 'Add your grooming tasks in list.',
     items: '10 Tasks',
     progressbarText: 'Completed 80% ',
-    color: '#008B94',
+    progress: 0.8,
+    color: '#C54B6C',
     image: require('../assets/images/item3_image.png'),
+    overlay: require('../assets/images/Vector.png'),
   },
   {
     id: '4',
@@ -38,8 +45,10 @@ export const itemsData = [
     subTitle: 'Add tasks in your to do list.',
     items: '15 Tasks',
     progressbarText: 'Completed 50% ',
+    progress: 0.5,
     color: '#E36A4A',
     image: require('../assets/images/item4_image.png'),
+    overlay: require('../assets/images/Vector.png'),
   },
   {
     id: '5',
@@ -48,7 +57,9 @@ export const itemsData = [
     subTitle: 'Add items to your list',
     items: '500 Recipes',
     progressbarText: 'Bought 70% ',
-    color: '#008B94',
+    progress: 0.7,
+    color: '#D88D1B',
     image: require('../assets/images/item5_image.png'),
+    overlay: require('../assets/images/Vector.png'),
   },
 ];

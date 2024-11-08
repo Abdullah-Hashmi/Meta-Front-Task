@@ -1,17 +1,9 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  StatusBar,
-  TouchableOpacity,
-  FlatList,
-  Image,
-} from 'react-native';
+import {StyleSheet, Text, View, StatusBar, FlatList, Image} from 'react-native';
+import * as Progress from 'react-native-progress';
 
 import {COLORS, FontFamily, FontSize} from '../constants/theme';
 import {itemsData} from '../data';
-import {ProgressBar} from 'react-native-paper'; // Make sure you have react-native-paper installed for ProgressBar
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -19,7 +11,6 @@ import {
 
 const Home = ({navigation}) => {
   const renderItem = ({item}) => {
-    console.log('Image source:', item.image); // Log the image to ensure it's correct
     return (
       <View
         style={[
@@ -27,17 +18,33 @@ const Home = ({navigation}) => {
           {backgroundColor: item.itembackground_color},
         ]}>
         <View style={styles.itemContent}>
-          <Text style={styles.title}>{item.title}</Text>
-          <Text style={styles.subTitle}>{item.subTitle}</Text>
+          {/* Title with dynamic color */}
+          <Text style={[styles.title, {color: item.color}]}>{item.title}</Text>
+
+          {/* Subtitle with dynamic color */}
+          <Text style={[styles.subTitle, {color: item.color}]}>
+            {item.subTitle}
+          </Text>
+
           <Text style={styles.itemsText}>{item.items}</Text>
-          {/* <Text style={styles.progressbarText}>{item.progressbarText}</Text> */}
-          {/* <ProgressBar
-            progress={parseFloat(item.progressbarText) / 100}
-            color={item.color}
-            style={styles.progressBar}
-          /> */}
+
+          {/* Progress Bar with dynamic color */}
+          <Progress.Bar
+            progress={item.progress} // Dynamic progress value
+            unfilledColor="white" // White color for the unfilled part
+            width={150}
+            color={item.color} // Dynamic color for the filled part
+            borderWidth={0} // Remove the border around the progress bar
+            height={3.5}
+            useNativeDriver={true} // Improve performance on certain devices
+          />
         </View>
-        <Image source={item.image} style={styles.image} />
+
+        {/* Image with overlay */}
+        <View style={styles.imageContainer}>
+          <Image source={item.image} style={styles.image} />
+          <Image source={item.overlay} style={styles.overlayImage} />
+        </View>
       </View>
     );
   };
@@ -63,6 +70,7 @@ const Home = ({navigation}) => {
         renderItem={renderItem}
         keyExtractor={item => item.id}
         contentContainerStyle={styles.listContainer}
+        ListFooterComponent={<View style={styles.footer} />} // Adding space at the bottom
       />
     </View>
   );
@@ -86,24 +94,15 @@ const styles = StyleSheet.create({
     color: COLORS.black,
     fontSize: FontSize.title,
     fontFamily: FontFamily.heading,
-    // fontWeight: 'SemiBold',
-    // marginTop: hp('2%'),
-  },
-  loginText: {
-    color: COLORS.black,
-    fontSize: FontSize.title,
-    fontFamily: FontFamily.B2_Semibold,
-    fontWeight: 'bold',
-    marginTop: hp('2%'),
   },
   Subtitle: {
     fontSize: FontSize.subtitle,
     fontFamily: FontFamily.subtitle,
     color: COLORS.thinText,
-    marginHorizontal: wp('2%'),
   },
   listContainer: {
-    paddingBottom: hp('5%'),
+    flexGrow: 1, // Ensure the FlatList grows to fill available space
+    paddingBottom: hp('5%'), // Adjust bottom padding to give space
   },
   itemContainer: {
     flexDirection: 'row',
@@ -112,6 +111,8 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     marginHorizontal: wp('5%'),
     alignItems: 'center',
+    width: wp('90%'), // Adjusted item width (set to 90% of screen width)
+    paddingBottom: 10, // Added padding at the bottom of each item
   },
   itemContent: {
     flex: 1,
@@ -133,21 +134,35 @@ const styles = StyleSheet.create({
     color: COLORS.secondaryGray,
     marginVertical: 2,
   },
-  progressbarText: {
-    fontSize: FontSize.subtitle,
-    fontFamily: FontFamily.P2_Regular,
-    color: COLORS.gray,
-    marginVertical: 2,
-  },
-  progressBar: {
-    height: 5,
-    borderRadius: 3,
-    marginTop: 5,
+  imageContainer: {
+    // position: 'relative', // Parent container for image and overlay
+    width: wp('30%'),
+    height: wp('30%'),
   },
   image: {
-    width: wp('20%'),
-    height: wp('20%'),
-    resizeMode: 'contain',
+    width: wp('30%'), // Adjusted image size
+    height: wp('30%'),
+    resizeMode: 'cover',
     backgroundColor: 'transparent',
+    alignSelf: 'flex-end', // Align image to the right
+    bottom: -9,
+    right: -14,
+    borderRadius: 10,
+  },
+  overlayImage: {
+    position: 'absolute', // Overlay positioned on top of the image
+    top: -25,
+    right: -100,
+
+    right: 0,
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover', // Adjust overlay size if necessary
+    backgroundColor: 'transparent',
+    borderRadius: 50,
+    alignSelf: 'flex-end',
+  },
+  footer: {
+    height: 50, // Add some height to the footer to provide spacing at the bottom
   },
 });
