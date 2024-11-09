@@ -5,7 +5,7 @@ import {COLORS} from '../constants';
 const Notifications = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Coming soon!</Text>
+      <Text style={styles.text}>Notifications Coming soon!</Text>
     </View>
   );
 };

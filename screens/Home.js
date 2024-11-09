@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     height: hp('30%'),
     backgroundColor: COLORS.ScreenBackgroundColor,
     justifyContent: 'flex-end',
-    paddingLeft: wp('7%'),
+    paddingLeft: wp('5%'),
     paddingBottom: hp('1%'),
   },
   headertitle: {
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    width: wp('90%'),
+    width: wp('90s%'),
     marginTop: hp('1%'),
   },
   searchBar: {
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
     marginVertical: hp('1%'),
     marginHorizontal: wp('5%'),
     alignItems: 'center',
-    width: wp('92%'),
+    width: wp('90%'),
   },
   itemContent: {
     flex: 1,

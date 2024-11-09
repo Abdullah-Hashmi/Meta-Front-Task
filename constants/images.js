@@ -3,7 +3,7 @@ const item2 = require('../assets/images/item2_image.png');
 const item3 = require('../assets/images/item3_image.png');
 const item4 = require('../assets/images/item4_image.png');
 const item5 = require('../assets/images/item5_image.png');
-const overlayimage = require('../assets/images/vector.png');
+const overlayimage = require('../assets/images/Vector.png');
 const CTA = require('../assets/images/CTA_icon.png');
 
 export default {

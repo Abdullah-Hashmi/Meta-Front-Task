@@ -5,7 +5,7 @@ import {COLORS} from '../constants';
 const Settings = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Coming soon!</Text>
+      <Text style={styles.text}>Profile is Coming soon!</Text>
     </View>
   );
 };
@@ -14,9 +14,9 @@ export default Settings;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, // This makes the container take up the full screen
-    justifyContent: 'center', // Centers the content vertically
-    alignItems: 'center', // Centers the content horizontally
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   text: {
     fontSize: 24,
